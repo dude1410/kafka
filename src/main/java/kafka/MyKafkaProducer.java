@@ -28,7 +28,7 @@ public class MyKafkaProducer {
 
         // send data
         producer.send(record);
-
-
+        producer.flush();
+        producer.close();
     }
 }
