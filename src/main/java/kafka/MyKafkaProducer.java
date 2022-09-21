@@ -8,7 +8,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import java.util.Properties;
 
 public class MyKafkaProducer {
-    
+
     public static void main(String[] args) {
 
         String bootStrapServer = "127.0.0.1:9092";
