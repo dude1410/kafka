@@ -6,12 +6,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
+import java.util.Random;
 
-public class MyKafkaProducerWithCallback {
+public class MyKafkaProducerWithKeys {
 
     public static void main(String[] args) {
 
-        Logger logger = LoggerFactory.getLogger(MyKafkaProducerWithCallback.class);
+        Random random = new Random();
+
+        Logger logger = LoggerFactory.getLogger(MyKafkaProducerWithKeys.class);
 
         String bootStrapServer = "192.168.3.29:9092";
         String topic = "first_topic";
@@ -26,14 +29,20 @@ public class MyKafkaProducerWithCallback {
         KafkaProducer<String, String> producer = new KafkaProducer<String, String>(properties);
 
 
-        for (int i = 0; i < 20; i++) {
+
+
+        for (int i = 0; i < 100; i++) {
+
+            int randomInt = random.nextInt(2);
 
             String messageText = "message with callback with number " + i;
+            String key = "key_" + randomInt;
 
             // create producer record
-            ProducerRecord<String, String> record = new ProducerRecord<>(topic, messageText);
+            ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, messageText);
 
             // send data - asynchronous
+            // message with the same key always gets to the same partition
             producer.send(record, new Callback() {
                 @Override
                 public void onCompletion(RecordMetadata recordMetadata, Exception e) {
