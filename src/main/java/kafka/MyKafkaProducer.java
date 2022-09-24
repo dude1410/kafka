@@ -11,7 +11,7 @@ public class MyKafkaProducer {
 
     public static void main(String[] args) {
 
-        String bootStrapServer = "127.0.0.1:9092";
+        String bootStrapServer = "192.168.3.29:9092";
 
         // create Producer properties
         Properties properties = new Properties();
