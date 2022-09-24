@@ -33,7 +33,7 @@ public class MyKafkaProducerWithKeys {
 
         for (int i = 0; i < 100; i++) {
 
-            int randomInt = random.nextInt(2);
+            int randomInt = random.nextInt(3);
 
             String messageText = "message with callback with number " + i;
             String key = "key_" + randomInt;
@@ -49,7 +49,7 @@ public class MyKafkaProducerWithKeys {
                     // executes every time a record is sent successfully or an exception is thrown
                     if (e == null) {
                         // the record was sent successfully
-                        logger.info(parseMetadata(recordMetadata));
+                        logger.info(parseMetadata(recordMetadata, key));
                     } else {
                         logger.error("Error when sending message: " + e);
                     }
@@ -60,10 +60,12 @@ public class MyKafkaProducerWithKeys {
         producer.close();
     }
 
-    private static String parseMetadata(RecordMetadata recordMetadata) {
+    private static String parseMetadata(RecordMetadata recordMetadata, String key) {
         StringBuilder builder = new StringBuilder();
         builder.append("The message was sent successfully\n")
-                .append("to topic ")
+                .append("with key ")
+                .append(key)
+                .append(" to topic ")
                 .append(recordMetadata.topic())
                 .append(" to partition ")
                 .append(recordMetadata.partition())
