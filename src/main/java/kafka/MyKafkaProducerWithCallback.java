@@ -13,7 +13,7 @@ public class MyKafkaProducerWithCallback {
 
         Logger logger = LoggerFactory.getLogger(MyKafkaProducerWithCallback.class);
 
-        String bootStrapServer = "127.0.0.1:9092";
+        String bootStrapServer = "192.168.3.29:9092";
 
         // create Producer properties
         Properties properties = new Properties();
@@ -24,33 +24,36 @@ public class MyKafkaProducerWithCallback {
         // create the Producer
         KafkaProducer<String, String> producer = new KafkaProducer<String, String>(properties);
 
-        // create producer record
-        ProducerRecord<String, String> record = new ProducerRecord<>("first_topic", "hello world" +
-                "to kafka from java app");
 
-        // send data - asynchronous
-        producer.send(record, new Callback() {
-            @Override
-            public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-                // executes every time a record is sent successfully or an exception is thrown
-                if (e == null) {
-                    // the record was sent successfully
-                    StringBuilder builder = new StringBuilder();
-                    builder.append("The message was sent to topic successfully\n")
-                    .append("to topic ")
-                    .append(recordMetadata.topic())
-                    .append(" to partition ")
-                    .append(recordMetadata.partition())
-                    .append(" with offset ")
-                    .append(recordMetadata.offset())
-                    .append(" at timestamp")
-                    .append(recordMetadata.timestamp());
-                    logger.info(builder.toString());
-                } else {
-                    logger.error("Error when sending message: " + e);
+        for (int i = 0; i < 20; i++) {
+            // create producer record
+            ProducerRecord<String, String> record = new ProducerRecord<>("first_topic",
+                    "message with callback with number " + i);
+
+            // send data - asynchronous
+            producer.send(record, new Callback() {
+                @Override
+                public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+                    // executes every time a record is sent successfully or an exception is thrown
+                    if (e == null) {
+                        // the record was sent successfully
+                        StringBuilder builder = new StringBuilder();
+                        builder.append("The message was sent successfully\n")
+                                .append("to topic ")
+                                .append(recordMetadata.topic())
+                                .append(" to partition ")
+                                .append(recordMetadata.partition())
+                                .append(" with offset ")
+                                .append(recordMetadata.offset())
+                                .append(" at timestamp ")
+                                .append(recordMetadata.timestamp());
+                        logger.info(builder.toString());
+                    } else {
+                        logger.error("Error when sending message: " + e);
+                    }
                 }
-            }
-        });
+            });
+        }
         producer.flush();
         producer.close();
     }
