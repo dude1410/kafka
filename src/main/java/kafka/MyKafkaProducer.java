@@ -26,7 +26,7 @@ public class MyKafkaProducer {
         ProducerRecord<String, String> record = new ProducerRecord<>("first_topic", "hello world" +
                 "to kafka from java app");
 
-        // send data
+        // send data - asynchronous
         producer.send(record);
         producer.flush();
         producer.close();
