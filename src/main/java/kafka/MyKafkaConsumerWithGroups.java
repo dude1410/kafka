@@ -20,7 +20,7 @@ public class MyKafkaConsumerWithGroups {
 
         String bootStrapServer = "192.168.3.29:9092";
         String topic = "first_topic";
-        String groupId = "my-fourth-app";
+        String groupId = "my-fifth-app";
 
         // create Consumer properties
         Properties properties = new Properties();
