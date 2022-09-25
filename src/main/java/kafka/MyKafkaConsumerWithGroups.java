@@ -12,11 +12,11 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 
-public class MyKafkaConsumer {
+public class MyKafkaConsumerWithGroups {
 
     public static void main(String[] args) {
 
-        Logger logger = LoggerFactory.getLogger(MyKafkaConsumer.class);
+        Logger logger = LoggerFactory.getLogger(MyKafkaConsumerWithGroups.class);
 
         String bootStrapServer = "192.168.3.29:9092";
         String topic = "first_topic";
