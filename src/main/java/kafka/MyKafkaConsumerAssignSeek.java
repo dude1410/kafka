@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Properties;
 
 public class MyKafkaConsumerAssignSeek {
@@ -22,21 +21,16 @@ public class MyKafkaConsumerAssignSeek {
 
         String bootStrapServer = "192.168.3.29:9092";
         String topic = "first_topic";
-//        String groupId = "my-fifth-app";
 
         // create Consumer properties
         Properties properties = new Properties();
         properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootStrapServer);
         properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-//        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"); // or "latest"
 
         // create Consumer
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
-
-//        // subscribe consumer to our topic(s)
-//        consumer.subscribe(Collections.singleton(topic)); // or Arrays.asList("first_topic", "second_topic")
 
         // assign an seek are mostly used to replay data or fetch a specific message
         TopicPartition partitionToReadFrom = new TopicPartition(topic, 0);
