@@ -28,9 +28,6 @@ public class MyKafkaProducerWithKeys {
         // create the Producer
         KafkaProducer<String, String> producer = new KafkaProducer<String, String>(properties);
 
-
-
-
         for (int i = 0; i < 100; i++) {
 
             int randomInt = random.nextInt(3);

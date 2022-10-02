@@ -9,12 +9,13 @@
     <version>1.0</version>
 
     <dependencies>
+
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>3.2.3</version>
             <exclusions>
-                <exclusion>  <!-- declare the exclusion here -->
+                <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-api</artifactId>
                 </exclusion>
@@ -25,7 +26,12 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.25</version>
-<!--            <scope>test</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>hbc-core</artifactId>
+            <version>2.2.0</version>
         </dependency>
 
     </dependencies>
