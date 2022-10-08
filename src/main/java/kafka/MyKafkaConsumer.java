@@ -18,7 +18,7 @@ public class MyKafkaConsumer {
 
         Logger logger = LoggerFactory.getLogger(MyKafkaConsumer.class);
 
-        String bootStrapServer = "192.168.3.29:9092";
+        String bootStrapServer = "192.168.3.32:9092";
         String topic = "first_topic";
         String groupId = "my-fourth-app";
 
