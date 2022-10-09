@@ -1,4 +1,4 @@
-package kafka;
+package kafkaBsasics;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -12,15 +12,15 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 
-public class MyKafkaConsumer {
+public class MyKafkaConsumerWithGroups {
 
     public static void main(String[] args) {
 
-        Logger logger = LoggerFactory.getLogger(MyKafkaConsumer.class);
+        Logger logger = LoggerFactory.getLogger(MyKafkaConsumerWithGroups.class);
 
         String bootStrapServer = "192.168.3.32:9092";
         String topic = "first_topic";
-        String groupId = "my-fourth-app";
+        String groupId = "my-fifth-app";
 
         // create Consumer properties
         Properties properties = new Properties();

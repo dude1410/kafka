@@ -1,4 +1,4 @@
-package kafka;
+package kafkaBsasics;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -19,7 +19,7 @@ public class MyKafkaConsumerAssignSeek {
 
         Logger logger = LoggerFactory.getLogger(MyKafkaConsumerAssignSeek.class);
 
-        String bootStrapServer = "192.168.3.29:9092";
+        String bootStrapServer = "192.168.3.32:9092";
         String topic = "first_topic";
 
         // create Consumer properties
