@@ -153,7 +153,7 @@ public class TwitterProducer {
         // high throughput producer (at the expense of a bit of latency and CPU usage)
         properties.setProperty(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy");
         properties.setProperty(ProducerConfig.LINGER_MS_CONFIG, "20");
-        properties.setProperty(ProducerConfig.BATCH_SIZE_CONFIG, Integer.toString(32*1024)); // 32 RB
+        properties.setProperty(ProducerConfig.BATCH_SIZE_CONFIG, Integer.toString(32*1024)); // 32 KB
 
         // create the Producer
         KafkaProducer<String, String> producer = new KafkaProducer<String, String>(properties);
