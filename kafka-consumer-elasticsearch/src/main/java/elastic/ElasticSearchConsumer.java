@@ -6,9 +6,15 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.xcontent.XContentType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -58,9 +64,26 @@ public class ElasticSearchConsumer {
     }
 
     public static void main(String[] args) {
+
+        Logger logger = LoggerFactory.getLogger(ElasticSearchConsumer.class);
+
         initialize();
-        System.out.println(hostname);
-        System.out.println(username);
-        System.out.println(password);
+        RestHighLevelClient client = createClient();
+
+        String json = "{\"key\": \"value\"}";
+
+        IndexRequest indexRequest = new IndexRequest("twitter", "tweets").source(json, XContentType.JSON);
+
+        try {
+            IndexResponse indexResponse = client.index(indexRequest, RequestOptions.DEFAULT);
+
+            String id = indexResponse.getId();
+
+            logger.info("message sending success -> Id is " + id);
+
+            client.close();
+        } catch (Exception e) {
+            logger.error("error --->>> " + e.getMessage());
+        }
     }
 }
