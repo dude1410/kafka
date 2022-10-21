@@ -12,6 +12,8 @@
         <module>kafka-consumer-elasticsearch</module>
         <module>kafka-twitter-module</module>
         <module>kafka-advanced-module</module>
+        <module>kafka-for-elasticsearch</module>
+        <module>kafka-elastic</module>
     </modules>
 
     <properties>
