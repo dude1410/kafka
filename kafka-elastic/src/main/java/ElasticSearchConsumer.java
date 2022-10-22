@@ -112,7 +112,6 @@ public class ElasticSearchConsumer {
                      * the real tweet is a json file itself */
 //                    String json = record.value();
 
-
                     String json = "{\"message\": \"" +  record.value() + "\"}";
 
                     IndexRequest indexRequest = new IndexRequest("twitter", "tweets").source(json, XContentType.JSON);
@@ -122,12 +121,6 @@ public class ElasticSearchConsumer {
                     String id = indexResponse.getId();
 
                     logger.info("message sending success -> Id is " + id);
-
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
 
