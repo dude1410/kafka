@@ -9,10 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <modules>
-        <module>kafka-consumer-elasticsearch</module>
         <module>kafka-twitter-module</module>
         <module>kafka-advanced-module</module>
-        <module>kafka-for-elasticsearch</module>
         <module>kafka-elastic</module>
     </modules>
 
