@@ -12,6 +12,7 @@
         <module>kafka-twitter-module</module>
         <module>kafka-advanced-module</module>
         <module>kafka-elastic</module>
+        <module>kafka-connect</module>
     </modules>
 
     <properties>
